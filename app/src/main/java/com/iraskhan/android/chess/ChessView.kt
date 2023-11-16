@@ -8,43 +8,20 @@ import android.util.AttributeSet
 import android.view.View
 
 class ChessView(context: Context?, attrs: AttributeSet?) : View(context, attrs) {
-    private final val originX = 20f
-    private final val originY = 500f
-    private final val cellSide = 130f
+    private val originX = 20f
+    private val originY = 500f
+    private val cellSide = 130f
     override fun onDrawForeground(canvas: Canvas?) {
         val paint = Paint()
 
-        for(j in 0 .. 3) {
-            for (i in 0..3) {
-                paint.color = Color.LTGRAY
+        for (i in 0..7) {
+            for (j in 0..7) {
+                paint.color = if ((i + j) % 2 == 1) Color.DKGRAY else Color.LTGRAY
                 canvas?.drawRect(
-                    originX + 2 * i * cellSide,
-                    originY + 2 * j * cellSide,
-                    originX + (2 * i + 1) * cellSide,
-                    originY + (2 * j + 1) * cellSide,
-                    paint
-                )
-                canvas?.drawRect(
-                    originX + (2 * i + 1) * cellSide,
-                    originY + (2 * j + 1) * cellSide,
-                    originX + (2 * i + 2) * cellSide,
-                    originY + (2 * j + 2) * cellSide,
-                paint
-                )
-
-                paint.color = Color.DKGRAY
-                canvas?.drawRect(
-                    originX + (2 * i + 1) * cellSide,
-                    originY + 2 * j * cellSide,
-                    originX + (2 * i + 2) * cellSide,
-                    originY + (2 * j + 1) * cellSide,
-                    paint
-                )
-                canvas?.drawRect(
-                    originX + (2 * i) * cellSide,
-                    originY + (2 * j + 1) * cellSide,
-                    originX + (2 * i + 1) * cellSide,
-                    originY + (2 * j + 2) * cellSide,
+                    originX + i * cellSide,
+                    originY + j * cellSide,
+                    originX + (i + 1) * cellSide,
+                    originY + (j + 1) * cellSide,
                     paint
                 )
             }
